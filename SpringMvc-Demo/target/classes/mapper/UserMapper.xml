@@ -1,0 +1,32 @@
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.mvc.mapper.UserMapper">
+    <select id="findAll" resultType="com.mvc.pojo.course">
+        select * from c_course where is_delete = 0;
+    </select>
+    <update id="updatecourse" parameterType="com.mvc.pojo.course">
+        update c_course set hours=#{hours} where id=#{id}
+    </update>
+    <insert id="insertcourse" parameterType="com.mvc.pojo.course" >
+        insert into c_course(id,name,hours,school) values(#{id},#{name},#{hours},#{school})
+    </insert>
+    <update id="deletecourse" parameterType="int">
+        update c_course set is_delete= 1 where id=#{id}
+    </update>
+    <update id="updateCourse" parameterType="com.mvc.pojo.course">
+        update c_courese set name=#{name},hours=#{hours},school=#{school} where id=#{id}
+    </update>
+    <select id="selectByname" parameterType="String" resultType="com.mvc.pojo.course">
+        select form c_course where name =#{name}
+    </select>
+    <update id="updateByname" parameterType="com.mvc.pojo.course">
+        update c_course set hours=#{hours},school=#{school} where name=#{name}
+    </update>
+    <select id="selectPassward" parameterType="String" resultType="String">
+        select passward  from user where name=#{name}
+    </select>
+    <insert id="insertUser" parameterType="com.mvc.pojo.user">
+        insert into user(name,passward) values (#{name},#{passward})
+    </insert>
+</mapper>
